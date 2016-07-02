@@ -24,7 +24,7 @@ Tap Me! is a game that is coded with **Swift 3.0**
 *Sorry for screenshots' quality.*
 
 
-
+<hr />
 **Batuhan KÖK**
 *Web & Mobile Developer*
 [http://batuhan.me](http://www.batuhan.me)
