@@ -17,9 +17,7 @@ Tap Me! is a game that is coded with **Swift 3.0**
 
 
 ##### Screenshots:
-> ![Homepage Screenshot on Simulator iOS 9.3 / iPhone 6S](http://i65.tinypic.com/2n6aivo.png)
-> ![Playing Game Page 2 on Simulator iOS 9.3 / iPhone 6S](http://i63.tinypic.com/3483hvc.png)
-> ![Gameover Page Screenshot on Simulator iOS 9.3 / iPhone 6S](http://i68.tinypic.com/20rkcbq.png)
+> ![Screenshots on Simulator iOS 9.3 / iPhone 6S](https://github.com/batuhankok/swift-tap-me/blob/master/secreenshot.png)
 
 *Sorry for screenshots' quality.*
 
