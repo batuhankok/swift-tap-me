@@ -1,8 +1,8 @@
-[![Programming Language](https://img.shields.io/badge/languages-Swift 3-green.svg?style=flat)](#)
+[![Programming Language](https://img.shields.io/badge/languages-Swift_3-green.svg?style=flat)](#)
 [![GNU v3 License](https://img.shields.io/badge/license-GNU-yellow.svg?style=flat)](http://choosealicense.com/licenses/gpl-3.0/)
 [![Twitter](https://img.shields.io/badge/twitter-@BatuhanKok-blue.svg?style=flat)](http://twitter.com/BatuhanKok)
 [![Website](https://img.shields.io/badge/website-batuhan.me-lightgrey.svg?style=flat)](http://batuhan.me)
-[![Freelance](https://img.shields.io/badge/hire me-yes!-brightgreen.svg?style=flat)](http://batuhan.me/contact)
+[![Freelance](https://img.shields.io/badge/hire_me-yes!-brightgreen.svg?style=flat)](http://batuhan.me/contact)
 
 # Tap Me!
 Tap Me! is a game that was coded with **Swift 3**. Do you want to learn to develop a game in Swift? This Swift game tutorial just for you...
