@@ -17,8 +17,8 @@ class LeaderTable: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let fetchLastScore = NSUserDefaults.standardUserDefaults()
-        if let lastScore = fetchLastScore.stringForKey("lastScore")
+        let fetchLastScore = UserDefaults.standard
+        if let lastScore = fetchLastScore.string(forKey: "lastScore")
         {
             
             lastScoreLabel.text = lastScore

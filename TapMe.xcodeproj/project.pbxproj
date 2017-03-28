@@ -189,9 +189,11 @@
 				TargetAttributes = {
 					746E036C1B14FA7C00E0CBB8 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0820;
 					};
 					746E03841B14FA7C00E0CBB8 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = 746E036C1B14FA7C00E0CBB8;
 					};
 				};
@@ -377,6 +379,7 @@
 				INFOPLIST_FILE = TapMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -387,6 +390,7 @@
 				INFOPLIST_FILE = TapMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -405,6 +409,7 @@
 				INFOPLIST_FILE = TapMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapMe.app/TapMe";
 			};
 			name = Debug;
@@ -420,6 +425,7 @@
 				INFOPLIST_FILE = TapMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapMe.app/TapMe";
 			};
 			name = Release;
