@@ -22,10 +22,10 @@ class SinglePlayer: UIViewController {
     var playerScore = 0
     
     var gameSetupSecond = 0
-    var gameSetupTimer = NSTimer()
+    var gameSetupTimer = Timer()
     
     var startingSecond = 0
-    var startingTimer = NSTimer()
+    var startingTimer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +38,13 @@ class SinglePlayer: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func retryButton(sender: AnyObject) {
+    @IBAction func retryButton(_ sender: AnyObject) {
         
-        gameOverRetryButton.hidden = true
-        gameOverScoreLabel.hidden = true
-        gameOverMenuButton.hidden = true
+        gameOverRetryButton.isHidden = true
+        gameOverScoreLabel.isHidden = true
+        gameOverMenuButton.isHidden = true
         
-        startingTimeLabel.hidden = false
+        startingTimeLabel.isHidden = false
         
         tapmeHeader.text = "Tap Me!"
         
@@ -52,9 +52,9 @@ class SinglePlayer: UIViewController {
         
     }
     
-    @IBAction func tapingPlusOne(sender: AnyObject) {
+    @IBAction func tapingPlusOne(_ sender: AnyObject) {
         
-        playerScore++
+        playerScore += 1
         gameSetupScoreLabel.text = "Score: \(playerScore)"
         
     }
@@ -63,26 +63,27 @@ class SinglePlayer: UIViewController {
         
         tapmeHeader.text = "Game Over!"
         
-        gameSetupTimeLabel.hidden = true
-        gameSetupScoreLabel.hidden = true
-        tapHereButton.hidden = true
+        gameSetupTimeLabel.isHidden = true
+        gameSetupScoreLabel.isHidden = true
+        tapHereButton.isHidden = true
         
-        gameOverRetryButton.hidden = false
-        gameOverMenuButton.hidden = false
+        gameOverRetryButton.isHidden = false
+        gameOverMenuButton.isHidden = false
         
-        gameOverScoreLabel.hidden = false
+        gameOverScoreLabel.isHidden = false
         gameOverScoreLabel.text = "Your Score: \(playerScore)"
         
-        let saveLastScore = NSUserDefaults.standardUserDefaults()
-        saveLastScore.setObject("\(playerScore)", forKey: "lastScore")
+        let saveLastScore = UserDefaults.standard
+        saveLastScore.set("\(playerScore)", forKey: "lastScore")
+        playerScore = 0
         
     }
     
     func gameSetup(){
         
-        gameSetupTimeLabel.hidden = false
-        gameSetupScoreLabel.hidden = false
-        tapHereButton.hidden = false
+        gameSetupTimeLabel.isHidden = false
+        gameSetupScoreLabel.isHidden = false
+        tapHereButton.isHidden = false
         
         gameSetupScoreLabel.text = "Score: \(playerScore)"
         
@@ -90,13 +91,13 @@ class SinglePlayer: UIViewController {
         
         gameSetupTimeLabel.text = "Time: \(gameSetupSecond)"
         
-        gameSetupTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("gameSetupCounter"), userInfo: nil, repeats: true)
+        gameSetupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SinglePlayer.gameSetupCounter), userInfo: nil, repeats: true)
         
     }
     
     func gameSetupCounter() {
         
-        gameSetupSecond--
+        gameSetupSecond -= 1
         gameSetupTimeLabel.text = "Time: \(gameSetupSecond)"
         
         if(gameSetupSecond == 0){
@@ -114,19 +115,19 @@ class SinglePlayer: UIViewController {
         
         startingTimeLabel.text = "\(startingSecond)"
         
-        startingTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("startingCounter"), userInfo: nil, repeats: true)
+        startingTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SinglePlayer.startingCounter), userInfo: nil, repeats: true)
         
     }
     
     func startingCounter() {
         
-        startingSecond--
+        startingSecond -= 1
         startingTimeLabel.text = "\(startingSecond)"
         
         if(startingSecond == 0){
             
             startingTimer.invalidate()
-            startingTimeLabel.hidden = true
+            startingTimeLabel.isHidden = true
             gameSetup()
 
         }
