@@ -10,27 +10,22 @@ import UIKit
 
 class SinglePlayer: UIViewController {
     
-    @IBOutlet weak var startingTimeLabel: UILabel!
-    @IBOutlet weak var gameSetupTimeLabel: UILabel!
-    @IBOutlet weak var tapmeHeader: UILabel!
-    @IBOutlet weak var gameSetupScoreLabel: UILabel!
-    @IBOutlet weak var tapHereButton: UIButton!
-    @IBOutlet weak var gameOverMenuButton: UIButton!
-    @IBOutlet weak var gameOverRetryButton: UIButton!
-    @IBOutlet weak var gameOverScoreLabel: UILabel!
+    let ud = UserDefaults.standard
+    
+    @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var scoreButton: UIButton!
+    @IBOutlet weak var tapButton: UIButton!
     
     var playerScore = 0
-    
     var gameSetupSecond = 0
     var gameSetupTimer = Timer()
-    
-    var startingSecond = 0
-    var startingTimer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startingSetup()
+        gameSetup()
+        navigationBarDesign()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,58 +33,75 @@ class SinglePlayer: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func retryButton(_ sender: AnyObject) {
+
+    @IBAction func tapButtonTapped(_ sender: Any) {
         
-        gameOverRetryButton.isHidden = true
-        gameOverScoreLabel.isHidden = true
-        gameOverMenuButton.isHidden = true
+        if playerScore % 2 == 0{
+            tapButton.setImage(UIImage(named: "tapEven"), for: .normal)
+        }else{
+            tapButton.setImage(UIImage(named: "tapOdd"), for: .normal)
+        }
         
-        startingTimeLabel.isHidden = false
-        
-        tapmeHeader.text = "Tap Me!"
-        
-        startingSetup()
+        playerScore += 1
+        scoreButton.setTitle("Score: \(playerScore)", for: .normal)
         
     }
     
-    @IBAction func tapingPlusOne(_ sender: AnyObject) {
-        
-        playerScore += 1
-        gameSetupScoreLabel.text = "Score: \(playerScore)"
-        
-    }
     
     func gameOver(){
         
-        tapmeHeader.text = "Game Over!"
         
-        gameSetupTimeLabel.isHidden = true
-        gameSetupScoreLabel.isHidden = true
-        tapHereButton.isHidden = true
+        var ifitisnew:String = ""
         
-        gameOverRetryButton.isHidden = false
-        gameOverMenuButton.isHidden = false
+        if let getBestTap = ud.string(forKey: "bestTap"){
+            
+            if Int(getBestTap)! < playerScore {
+                
+                ud.set("\(playerScore)", forKey: "bestTap")
+                ifitisnew = "\nThis is your new best also!"
+                
+            }
+            
+        }
         
-        gameOverScoreLabel.isHidden = false
-        gameOverScoreLabel.text = "Your Score: \(playerScore)"
+        let alertController = UIAlertController(title: "Game Over!", message: "Congarts!\nYou have tapped \(playerScore) times.\(ifitisnew)", preferredStyle: UIAlertControllerStyle.alert)
         
-        let saveLastScore = UserDefaults.standard
-        saveLastScore.set("\(playerScore)", forKey: "lastScore")
+        let okAction = UIAlertAction(title: "Return to Home", style: UIAlertActionStyle.destructive) {
+            (result : UIAlertAction) -> Void in
+            
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as? MainView {
+                if let navigator = self.navigationController {
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+            
+        }
+        
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+
         playerScore = 0
         
     }
     
     func gameSetup(){
         
-        gameSetupTimeLabel.isHidden = false
-        gameSetupScoreLabel.isHidden = false
-        tapHereButton.isHidden = false
+        if let getGameLevel = ud.string(forKey: "gameLevel"){
+            
+            if getGameLevel == "0"{
+                gameSetupSecond = 45
+            }else if getGameLevel == "1"{
+                gameSetupSecond = 30
+            }else{
+                gameSetupSecond = 20
+            }
+            
+        }else{
+            gameSetupSecond = 45
+        }
         
-        gameSetupScoreLabel.text = "Score: \(playerScore)"
-        
-        gameSetupSecond = 10
-        
-        gameSetupTimeLabel.text = "Time: \(gameSetupSecond)"
+        scoreButton.setTitle("Score: \(playerScore)", for: .normal)
+        timeButton.setTitle("Time: \(gameSetupSecond)s", for: .normal)
         
         gameSetupTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SinglePlayer.gameSetupCounter), userInfo: nil, repeats: true)
         
@@ -98,7 +110,7 @@ class SinglePlayer: UIViewController {
     func gameSetupCounter() {
         
         gameSetupSecond -= 1
-        gameSetupTimeLabel.text = "Time: \(gameSetupSecond)"
+        timeButton.setTitle("Time: \(gameSetupSecond)s", for: .normal)
         
         if(gameSetupSecond == 0){
             
@@ -109,40 +121,97 @@ class SinglePlayer: UIViewController {
         
     }
     
-    func startingSetup(){
+    
+    //Navigation bar's design
+    func navigationBarDesign(){
         
-        startingSecond = 3
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0xAB7A43)
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 2.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.white ]
         
-        startingTimeLabel.text = "\(startingSecond)"
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "info"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn1.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
         
-        startingTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SinglePlayer.startingCounter), userInfo: nil, repeats: true)
+        let btn2 = UIButton(type: .custom)
+        btn2.setImage(UIImage(named: "bestrecord"), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn2.addTarget(self, action: #selector(bestrecordButtonTapped), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        
+        self.navigationItem.setRightBarButton(item1, animated: true)
+        self.navigationItem.setLeftBarButton(item2, animated: true)
         
     }
     
-    func startingCounter() {
+    
+    func bestrecordButtonTapped(){
         
-        startingSecond -= 1
-        startingTimeLabel.text = "\(startingSecond)"
+        var bestTap:String = ""
         
-        if(startingSecond == 0){
+        if let getBestTap = ud.string(forKey: "bestTap"){
+            bestTap = getBestTap
+        }else{
+            ud.set("", forKey: "bestTap")
+        }
+        
+        if bestTap != ""{
             
-            startingTimer.invalidate()
-            startingTimeLabel.isHidden = true
-            gameSetup()
-
+            let alertController = UIAlertController(title: "Best Record", message: "Your best record is \(bestTap) times tapped!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        }else{
+            
+            let alertController = UIAlertController(title: "Best Record", message: "You didn't play the game yet :(", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            
         }
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func infoButtonTapped(){
+        
+        let alertController = UIAlertController(title: "Developer", message: "Batuhan Kök\nhttps://batuhan.me", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+        }
+        
+        let okAction = UIAlertAction(title: "See the Site", style: UIAlertActionStyle.destructive) {
+            (result : UIAlertAction) -> Void in
+            UIApplication.shared.openURL(URL(string: "https://batuhan.me")!)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
-    */
+    
+    
+    //White statusbar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 
 }

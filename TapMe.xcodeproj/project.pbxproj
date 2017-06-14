@@ -7,18 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742F1E0B1EEF19FD002C2589 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742F1E0A1EEF19FD002C2589 /* Extensions.swift */; };
 		746E03731B14FA7C00E0CBB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E03721B14FA7C00E0CBB8 /* AppDelegate.swift */; };
 		746E03761B14FA7C00E0CBB8 /* TapMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 746E03741B14FA7C00E0CBB8 /* TapMe.xcdatamodeld */; };
-		746E03781B14FA7C00E0CBB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E03771B14FA7C00E0CBB8 /* ViewController.swift */; };
+		746E03781B14FA7C00E0CBB8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E03771B14FA7C00E0CBB8 /* MainView.swift */; };
 		746E037B1B14FA7C00E0CBB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 746E03791B14FA7C00E0CBB8 /* Main.storyboard */; };
 		746E037D1B14FA7C00E0CBB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 746E037C1B14FA7C00E0CBB8 /* Images.xcassets */; };
 		746E03801B14FA7C00E0CBB8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E037E1B14FA7C00E0CBB8 /* LaunchScreen.xib */; };
 		746E038C1B14FA7C00E0CBB8 /* TapMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E038B1B14FA7C00E0CBB8 /* TapMeTests.swift */; };
-		746E039C1B1501A900E0CBB8 /* multiplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 746E03991B1501A900E0CBB8 /* multiplayer.png */; };
-		746E039D1B1501A900E0CBB8 /* scores.png in Resources */ = {isa = PBXBuildFile; fileRef = 746E039A1B1501A900E0CBB8 /* scores.png */; };
-		746E039E1B1501A900E0CBB8 /* singleplayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 746E039B1B1501A900E0CBB8 /* singleplayer.png */; };
 		74BB75711B17105500EEEC04 /* SinglePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BB75701B17105500EEEC04 /* SinglePlayer.swift */; };
-		74E9E09E1B17AC56004152EA /* LeaderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E9E09D1B17AC56004152EA /* LeaderTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,22 +29,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		742F1E0A1EEF19FD002C2589 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		746E036D1B14FA7C00E0CBB8 /* TapMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		746E03711B14FA7C00E0CBB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		746E03721B14FA7C00E0CBB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		746E03751B14FA7C00E0CBB8 /* TapMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TapMe.xcdatamodel; sourceTree = "<group>"; };
-		746E03771B14FA7C00E0CBB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		746E03771B14FA7C00E0CBB8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		746E037A1B14FA7C00E0CBB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		746E037C1B14FA7C00E0CBB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		746E037F1B14FA7C00E0CBB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		746E03851B14FA7C00E0CBB8 /* TapMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		746E038A1B14FA7C00E0CBB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		746E038B1B14FA7C00E0CBB8 /* TapMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapMeTests.swift; sourceTree = "<group>"; };
-		746E03991B1501A900E0CBB8 /* multiplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = multiplayer.png; sourceTree = "<group>"; };
-		746E039A1B1501A900E0CBB8 /* scores.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scores.png; sourceTree = "<group>"; };
-		746E039B1B1501A900E0CBB8 /* singleplayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singleplayer.png; sourceTree = "<group>"; };
 		74BB75701B17105500EEEC04 /* SinglePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayer.swift; sourceTree = "<group>"; };
-		74E9E09D1B17AC56004152EA /* LeaderTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +84,13 @@
 			isa = PBXGroup;
 			children = (
 				746E03721B14FA7C00E0CBB8 /* AppDelegate.swift */,
-				746E03771B14FA7C00E0CBB8 /* ViewController.swift */,
+				746E03771B14FA7C00E0CBB8 /* MainView.swift */,
 				746E03791B14FA7C00E0CBB8 /* Main.storyboard */,
-				74E9E09D1B17AC56004152EA /* LeaderTable.swift */,
+				742F1E0A1EEF19FD002C2589 /* Extensions.swift */,
 				74BB75701B17105500EEEC04 /* SinglePlayer.swift */,
 				746E037C1B14FA7C00E0CBB8 /* Images.xcassets */,
 				746E037E1B14FA7C00E0CBB8 /* LaunchScreen.xib */,
 				746E03741B14FA7C00E0CBB8 /* TapMe.xcdatamodeld */,
-				746E03981B14FDF700E0CBB8 /* Images */,
 				746E03701B14FA7C00E0CBB8 /* Supporting Files */,
 			);
 			path = TapMe;
@@ -126,16 +119,6 @@
 				746E038A1B14FA7C00E0CBB8 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		746E03981B14FDF700E0CBB8 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				746E03991B1501A900E0CBB8 /* multiplayer.png */,
-				746E039A1B1501A900E0CBB8 /* scores.png */,
-				746E039B1B1501A900E0CBB8 /* singleplayer.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,7 +167,7 @@
 			attributes = {
 				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Batuhan Kök";
 				TargetAttributes = {
 					746E036C1B14FA7C00E0CBB8 = {
@@ -222,11 +205,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746E039E1B1501A900E0CBB8 /* singleplayer.png in Resources */,
 				746E037B1B14FA7C00E0CBB8 /* Main.storyboard in Resources */,
-				746E039D1B1501A900E0CBB8 /* scores.png in Resources */,
 				746E03801B14FA7C00E0CBB8 /* LaunchScreen.xib in Resources */,
-				746E039C1B1501A900E0CBB8 /* multiplayer.png in Resources */,
 				746E037D1B14FA7C00E0CBB8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,8 +226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				74BB75711B17105500EEEC04 /* SinglePlayer.swift in Sources */,
-				746E03781B14FA7C00E0CBB8 /* ViewController.swift in Sources */,
-				74E9E09E1B17AC56004152EA /* LeaderTable.swift in Sources */,
+				742F1E0B1EEF19FD002C2589 /* Extensions.swift in Sources */,
+				746E03781B14FA7C00E0CBB8 /* MainView.swift in Sources */,
 				746E03731B14FA7C00E0CBB8 /* AppDelegate.swift in Sources */,
 				746E03761B14FA7C00E0CBB8 /* TapMe.xcdatamodeld in Sources */,
 			);
@@ -304,14 +284,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -348,8 +331,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -368,6 +353,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -378,6 +364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TapMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.batuhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -389,6 +376,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TapMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.batuhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -408,6 +396,7 @@
 				);
 				INFOPLIST_FILE = TapMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.batuhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapMe.app/TapMe";
@@ -424,6 +413,7 @@
 				);
 				INFOPLIST_FILE = TapMeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.batuhan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapMe.app/TapMe";
