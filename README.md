@@ -24,6 +24,6 @@ Tap Me! is a game that was coded with **Swift 3+**. Do you want to learn to deve
 - There might be some errors, if you write me, I can fix them.
 
 ##### Screenshots:
-> ![Screenshots on Simulator iOS 10.3 / iPhone 7](https://github.com/batuhankok/swift-tap-me/blob/master/screenshot.jpg)
+> ![Screenshots on Simulator iOS 10.3 / iPhone 7](https://github.com/batuhankok/swift-tap-me/blob/master/screenshots.jpg)
 
 *Sorry for the code quality.*
