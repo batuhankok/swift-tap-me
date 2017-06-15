@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		742F1E0B1EEF19FD002C2589 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742F1E0A1EEF19FD002C2589 /* Extensions.swift */; };
+		7461E1751EF2CF9C00BB7318 /* BebasNeue-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7461E1721EF2CF8200BB7318 /* BebasNeue-Bold.otf */; };
 		746E03731B14FA7C00E0CBB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E03721B14FA7C00E0CBB8 /* AppDelegate.swift */; };
 		746E03761B14FA7C00E0CBB8 /* TapMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 746E03741B14FA7C00E0CBB8 /* TapMe.xcdatamodeld */; };
 		746E03781B14FA7C00E0CBB8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E03771B14FA7C00E0CBB8 /* MainView.swift */; };
@@ -15,6 +16,7 @@
 		746E037D1B14FA7C00E0CBB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 746E037C1B14FA7C00E0CBB8 /* Images.xcassets */; };
 		746E03801B14FA7C00E0CBB8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746E037E1B14FA7C00E0CBB8 /* LaunchScreen.xib */; };
 		746E038C1B14FA7C00E0CBB8 /* TapMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746E038B1B14FA7C00E0CBB8 /* TapMeTests.swift */; };
+		749F85081EF2E4EF00034C81 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 749F85071EF2E4EF00034C81 /* background.mp3 */; };
 		74BB75711B17105500EEEC04 /* SinglePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BB75701B17105500EEEC04 /* SinglePlayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		742F1E0A1EEF19FD002C2589 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7461E1721EF2CF8200BB7318 /* BebasNeue-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.otf"; sourceTree = "<group>"; };
 		746E036D1B14FA7C00E0CBB8 /* TapMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		746E03711B14FA7C00E0CBB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		746E03721B14FA7C00E0CBB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		746E03851B14FA7C00E0CBB8 /* TapMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		746E038A1B14FA7C00E0CBB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		746E038B1B14FA7C00E0CBB8 /* TapMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapMeTests.swift; sourceTree = "<group>"; };
+		749F85071EF2E4EF00034C81 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		74BB75701B17105500EEEC04 /* SinglePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +103,8 @@
 		746E03701B14FA7C00E0CBB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				749F85071EF2E4EF00034C81 /* background.mp3 */,
+				7461E1721EF2CF8200BB7318 /* BebasNeue-Bold.otf */,
 				746E03711B14FA7C00E0CBB8 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -205,6 +211,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7461E1751EF2CF9C00BB7318 /* BebasNeue-Bold.otf in Resources */,
+				749F85081EF2E4EF00034C81 /* background.mp3 in Resources */,
 				746E037B1B14FA7C00E0CBB8 /* Main.storyboard in Resources */,
 				746E03801B14FA7C00E0CBB8 /* LaunchScreen.xib in Resources */,
 				746E037D1B14FA7C00E0CBB8 /* Images.xcassets in Resources */,

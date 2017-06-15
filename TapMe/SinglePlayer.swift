@@ -12,9 +12,11 @@ class SinglePlayer: UIViewController {
     
     let ud = UserDefaults.standard
     
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var scoreButton: UIButton!
     @IBOutlet weak var tapButton: UIButton!
+    @IBOutlet weak var musicButton: UIButton!
     
     var playerScore = 0
     var gameSetupSecond = 0
@@ -24,7 +26,7 @@ class SinglePlayer: UIViewController {
         super.viewDidLoad()
 
         gameSetup()
-        navigationBarDesign()
+        gameDesign()
         
     }
 
@@ -71,14 +73,25 @@ class SinglePlayer: UIViewController {
             
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as? MainView {
                 if let navigator = self.navigationController {
+                    
+                    DispatchQueue.main.async(execute: { () -> Void in
                     navigator.pushViewController(viewController, animated: true)
+                        
+                    })
+                    
                 }
             }
             
         }
         
         alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        
+        //If user is on the SinglePlayer view, then alert will be appeared
+        if let topController = UIApplication.topViewController() {
+            if topController.className == "SinglePlayer"{
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
 
         playerScore = 0
         
@@ -113,41 +126,8 @@ class SinglePlayer: UIViewController {
         timeButton.setTitle("Time: \(gameSetupSecond)s", for: .normal)
         
         if(gameSetupSecond == 0){
-            
-            gameSetupTimer.invalidate()
             gameOver()
-            
         }
-        
-    }
-    
-    
-    //Navigation bar's design
-    func navigationBarDesign(){
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0xAB7A43)
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 2.0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
-        self.navigationController?.navigationBar.layer.masksToBounds = false
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.white ]
-        
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(UIImage(named: "info"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn1.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
-        
-        let btn2 = UIButton(type: .custom)
-        btn2.setImage(UIImage(named: "bestrecord"), for: .normal)
-        btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn2.addTarget(self, action: #selector(bestrecordButtonTapped), for: .touchUpInside)
-        let item2 = UIBarButtonItem(customView: btn2)
-        
-        self.navigationItem.setRightBarButton(item1, animated: true)
-        self.navigationItem.setLeftBarButton(item2, animated: true)
         
     }
     
@@ -211,6 +191,52 @@ class SinglePlayer: UIViewController {
     //White statusbar
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    
+    //When view closed
+    override func viewDidDisappear(_ animated: Bool) {
+        gameOver()
+    }
+    
+    
+    //Music button
+    @IBAction func musicButtonTapped(_ sender: Any) {
+
+        musicButton.setImage(UIImage(named: "musicOff"), for: .normal)
+      
+    }
+    
+    
+    //Game's design
+    func gameDesign(){
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0xAB7A43)
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 2.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.white ]
+        
+        let btn1 = UIButton(type: .custom)
+        btn1.setImage(UIImage(named: "info"), for: .normal)
+        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn1.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        let item1 = UIBarButtonItem(customView: btn1)
+        
+        let btn2 = UIButton(type: .custom)
+        btn2.setImage(UIImage(named: "bestrecord"), for: .normal)
+        btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btn2.addTarget(self, action: #selector(bestrecordButtonTapped), for: .touchUpInside)
+        let item2 = UIBarButtonItem(customView: btn2)
+        
+        self.navigationItem.setRightBarButton(item1, animated: true)
+        self.navigationItem.setLeftBarButton(item2, animated: true)
+        
+        self.bgImageView.image = UIImage(named: "bg")!.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
     }
 
 

@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainView: UIViewController {
     
     let ud = UserDefaults.standard
+    @IBOutlet weak var bgImageView: UIImageView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        navigationBarDesign()
-        ud.set("0", forKey: "gameLevel")
+        //Make some changes for design
+        gameDesign()
         
+        //If game level didn't set for now
+        if ud.string(forKey: "gameLevel") == nil{
+            ud.set("0", forKey: "gameLevel")
+        }
+
     }
+
     
     func bestrecordButtonTapped(){
         
@@ -99,17 +106,17 @@ class MainView: UIViewController {
     }
     
     
-    //Navigation bar's design
-    func navigationBarDesign(){
+    //Game's design
+    func gameDesign(){
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0xAB7A43)
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 2.0
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
         self.navigationController?.navigationBar.layer.masksToBounds = false
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.white ]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 19)!, NSForegroundColorAttributeName: UIColor.white ]
         
         let btn1 = UIButton(type: .custom)
         btn1.setImage(UIImage(named: "info"), for: .normal)
@@ -125,6 +132,8 @@ class MainView: UIViewController {
         
         self.navigationItem.setRightBarButton(item1, animated: true)
         self.navigationItem.setLeftBarButton(item2, animated: true)
+        
+        self.bgImageView.image = UIImage(named: "bg")!.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
     }
 
