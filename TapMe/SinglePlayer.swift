@@ -10,14 +10,16 @@ import UIKit
 
 class SinglePlayer: UIViewController {
     
+    //User defaults
     let ud = UserDefaults.standard
     
+    //Outlets
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var timeButton: UIButton!
     @IBOutlet weak var scoreButton: UIButton!
     @IBOutlet weak var tapButton: UIButton!
-    @IBOutlet weak var musicButton: UIButton!
     
+    //Player ini score, remaining time, timer
     var playerScore = 0
     var gameSetupSecond = 0
     var gameSetupTimer = Timer()
@@ -25,8 +27,11 @@ class SinglePlayer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Setup the game
         gameSetup()
-        gameDesign()
+        
+        //Background pattern
+        self.bgImageView.image = UIImage(named: "bg")!.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
     }
 
@@ -36,6 +41,7 @@ class SinglePlayer: UIViewController {
     }
     
 
+    //Tapped!
     @IBAction func tapButtonTapped(_ sender: Any) {
         
         if playerScore % 2 == 0{
@@ -50,67 +56,62 @@ class SinglePlayer: UIViewController {
     }
     
     
+    //When user is gameover
     func gameOver(){
         
-        
+        ud.set("\(playerScore)", forKey: "bestTap")
+            
         var ifitisnew:String = ""
-        
+            
         if let getBestTap = ud.string(forKey: "bestTap"){
-            
-            if Int(getBestTap)! < playerScore {
-                
-                ud.set("\(playerScore)", forKey: "bestTap")
-                ifitisnew = "\nThis is your new best also!"
-                
-            }
-            
-        }
-        
-        let alertController = UIAlertController(title: "Game Over!", message: "Congarts!\nYou have tapped \(playerScore) times.\(ifitisnew)", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let okAction = UIAlertAction(title: "Return to Home", style: UIAlertActionStyle.destructive) {
-            (result : UIAlertAction) -> Void in
-            
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as? MainView {
-                if let navigator = self.navigationController {
+            if getBestTap != ""{
                     
-                    DispatchQueue.main.async(execute: { () -> Void in
-                    navigator.pushViewController(viewController, animated: true)
+                if Int(getBestTap)! < playerScore {
                         
-                    })
-                    
+                    ifitisnew = "\nThis is your new best also 🎉"
+                        
                 }
+                
             }
-            
         }
-        
+            
+        let alertController = UIAlertController(title: "Game Over!", message: "Congarts!\nYou have tapped \(playerScore) times 👏\(ifitisnew)", preferredStyle: UIAlertControllerStyle.alert)
+            
+        let okAction = UIAlertAction(title: "Return to Home", style: UIAlertActionStyle.destructive) {
+                (result : UIAlertAction) -> Void in
+                
+            self.dismiss(animated: true, completion: nil)
+                
+        }
+            
         alertController.addAction(okAction)
-        
+            
         //If user is on the SinglePlayer view, then alert will be appeared
         if let topController = UIApplication.topViewController() {
             if topController.className == "SinglePlayer"{
                 self.present(alertController, animated: true, completion: nil)
             }
         }
+   
 
-        playerScore = 0
-        
     }
     
+    
+    //Setup the game
     func gameSetup(){
         
         if let getGameLevel = ud.string(forKey: "gameLevel"){
             
             if getGameLevel == "0"{
-                gameSetupSecond = 45
+                gameSetupSecond = 60
             }else if getGameLevel == "1"{
-                gameSetupSecond = 30
+                gameSetupSecond = 45
             }else{
-                gameSetupSecond = 20
+                gameSetupSecond = 30
             }
             
         }else{
-            gameSetupSecond = 45
+            gameSetupSecond = 30
         }
         
         scoreButton.setTitle("Score: \(playerScore)", for: .normal)
@@ -120,123 +121,40 @@ class SinglePlayer: UIViewController {
         
     }
     
+    
+    //Check did game is finish and second--
     func gameSetupCounter() {
-        
-        gameSetupSecond -= 1
-        timeButton.setTitle("Time: \(gameSetupSecond)s", for: .normal)
-        
-        if(gameSetupSecond == 0){
+
+        if gameSetupSecond == 0{
+            gameSetupTimer.invalidate()
             gameOver()
-        }
-        
-    }
-    
-    
-    func bestrecordButtonTapped(){
-        
-        var bestTap:String = ""
-        
-        if let getBestTap = ud.string(forKey: "bestTap"){
-            bestTap = getBestTap
         }else{
-            ud.set("", forKey: "bestTap")
-        }
-        
-        if bestTap != ""{
-            
-            let alertController = UIAlertController(title: "Best Record", message: "Your best record is \(bestTap) times tapped!", preferredStyle: UIAlertControllerStyle.alert)
-            
-            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
-                (result : UIAlertAction) -> Void in
-            }
-            
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-        }else{
-            
-            let alertController = UIAlertController(title: "Best Record", message: "You didn't play the game yet :(", preferredStyle: UIAlertControllerStyle.alert)
-            
-            let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
-                (result : UIAlertAction) -> Void in
-            }
-            
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-            
+            gameSetupSecond -= 1
+            timeButton.setTitle("Time: \(gameSetupSecond)s", for: .normal)
         }
         
     }
     
-    func infoButtonTapped(){
+    
+    //For turning back to home
+    @IBAction func homeButtonTapped(_ sender: Any) {
         
-        let alertController = UIAlertController(title: "Developer", message: "Batuhan Kök\nhttps://batuhan.me", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        
-        let okAction = UIAlertAction(title: "See the Site", style: UIAlertActionStyle.destructive) {
-            (result : UIAlertAction) -> Void in
-            UIApplication.shared.openURL(URL(string: "https://batuhan.me")!)
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
+
     
-    
-    //White statusbar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    //Hidden statusbar
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     
     //When view closed
     override func viewDidDisappear(_ animated: Bool) {
         gameOver()
-    }
-    
-    
-    //Music button
-    @IBAction func musicButtonTapped(_ sender: Any) {
-
-        musicButton.setImage(UIImage(named: "musicOff"), for: .normal)
-      
-    }
-    
-    
-    //Game's design
-    func gameDesign(){
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0xAB7A43)
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor.black.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 2.0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
-        self.navigationController?.navigationBar.layer.masksToBounds = false
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.white ]
-        
-        let btn1 = UIButton(type: .custom)
-        btn1.setImage(UIImage(named: "info"), for: .normal)
-        btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn1.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-        let item1 = UIBarButtonItem(customView: btn1)
-        
-        let btn2 = UIButton(type: .custom)
-        btn2.setImage(UIImage(named: "bestrecord"), for: .normal)
-        btn2.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btn2.addTarget(self, action: #selector(bestrecordButtonTapped), for: .touchUpInside)
-        let item2 = UIBarButtonItem(customView: btn2)
-        
-        self.navigationItem.setRightBarButton(item1, animated: true)
-        self.navigationItem.setLeftBarButton(item2, animated: true)
-        
-        self.bgImageView.image = UIImage(named: "bg")!.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        
+        playerScore = 0
+        tapButton.isEnabled = false
     }
 
 

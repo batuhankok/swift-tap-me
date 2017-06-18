@@ -10,49 +10,86 @@ import UIKit
 import AVFoundation
 
 class MainView: UIViewController {
+
+    //Music player settings
+    lazy var backgroundMusic: AVAudioPlayer? = {
+        guard let url = Bundle.main.url(forResource: "background", withExtension: "mp3") else { return nil }
+        do {
+            let player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = -1
+            return player
+        } catch { return nil }
+    }()
     
+    //User defaults
     let ud = UserDefaults.standard
+    
+    //Background imageview outlet
     @IBOutlet weak var bgImageView: UIImageView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         //Make some changes for design
         gameDesign()
         
+        
+        //Check music status and do it
+        let musicStatus = ud.string(forKey: "musicStatus")
+        if musicStatus == ""{
+            ud.set(1, forKey: "musicStatus")
+        }
+        if musicStatus == "0"{
+            backgroundMusic?.pause()
+        }else{
+            backgroundMusic?.play()
+        }
+            
+
         //If game level didn't set for now
         if ud.string(forKey: "gameLevel") == nil{
             ud.set("0", forKey: "gameLevel")
         }
-
-    }
-
-    
-    func bestrecordButtonTapped(){
         
-        var bestTap:String = ""
-        
-        if let getBestTap = ud.string(forKey: "bestTap"){
-            bestTap = getBestTap
-        }else{
+         
+        //If best tap didn't set for now
+        if ud.string(forKey: "bestTap") == nil{
             ud.set("", forKey: "bestTap")
         }
         
-        if bestTap != ""{
+
+    }
+    
+
+    //When user tapped the best record button
+    func bestrecordButtonTapped(){
+        
+        let bestTap:String = ud.string(forKey: "bestTap")!
+        
+        if bestTap != "" && bestTap != "0"{
             
-            let alertController = UIAlertController(title: "Best Record", message: "Your best record is \(bestTap) times tapped!", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Best Record", message: "Your best record is \(String(describing: bestTap)) times! 👍🏻", preferredStyle: UIAlertControllerStyle.alert)
             
             let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
                 (result : UIAlertAction) -> Void in
             }
             
+            let resetAction = UIAlertAction(title: "Reset", style: UIAlertActionStyle.destructive) {
+                (result : UIAlertAction) -> Void in
+                
+                self.ud.set("", forKey: "bestTap")
+                
+            }
+            
+            alertController.addAction(resetAction)
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             
         }else{
             
-            let alertController = UIAlertController(title: "Best Record", message: "You didn't play the game yet :(", preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: "Best Record", message: "You didn't play the game yet 😞", preferredStyle: UIAlertControllerStyle.alert)
             
             let okAction = UIAlertAction(title: "Okay", style: UIAlertActionStyle.default) {
                 (result : UIAlertAction) -> Void in
@@ -65,43 +102,75 @@ class MainView: UIViewController {
 
     }
     
+    
+    //When user tapped the information button
     func infoButtonTapped(){
         
-        let alertController = UIAlertController(title: "Developer", message: "Batuhan Kök\nhttps://batuhan.me", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Info", message: "The app's developer is Batuhan Kök.", preferredStyle: UIAlertControllerStyle.alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
             (result : UIAlertAction) -> Void in
         }
         
-        let okAction = UIAlertAction(title: "See the Site", style: UIAlertActionStyle.destructive) {
+        let siteAction = UIAlertAction(title: "Visit My Site", style: UIAlertActionStyle.destructive) {
             (result : UIAlertAction) -> Void in
                 UIApplication.shared.openURL(URL(string: "https://batuhan.me")!)
         }
         
+        var title = ""
+        let musicStatus = ud.string(forKey: "musicStatus")
+        
+        if musicStatus == "0"{
+            title = "Play the Sound 🔔"
+        }else{
+            title = "Stop the Sound 🔕"
+        }
+        
+        let soundAction = UIAlertAction(title: title, style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            
+            if musicStatus == "0"{
+                self.backgroundMusic?.play()
+                self.ud.set("1", forKey: "musicStatus")
+            }else{
+                self.backgroundMusic?.pause()
+                self.ud.set("0", forKey: "musicStatus")
+            }
+            
+        }
+        
+
+        alertController.addAction(siteAction)
+        alertController.addAction(soundAction)
         alertController.addAction(cancelAction)
-        alertController.addAction(okAction)
+        
         self.present(alertController, animated: true, completion: nil)
         
     }
     
+    
+    //Option for time 30sec (key: 0)
     @IBAction func easyButtonTapped(_ sender: Any) {
-        
-        //0 for easy
         ud.set("0", forKey: "gameLevel")
-        
     }
     
+    
+    //Option for time 45sec (key: 1)
     @IBAction func mediumButtonTapped(_ sender: Any) {
-        
-        //1 for medium
         ud.set("1", forKey: "gameLevel")
-        
     }
     
+    
+    //Option for time 60 (key: 2)
     @IBAction func hardButtonTapped(_ sender: Any) {
-        
-        //2 for hard
         ud.set("2", forKey: "gameLevel")
+    }
+    
+    
+    //Play button tapped
+    @IBAction func playButtonTapped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "playTheGame", sender: self)
         
     }
     
@@ -137,10 +206,12 @@ class MainView: UIViewController {
         
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     //White statusbar
     override var preferredStatusBarStyle: UIStatusBarStyle {

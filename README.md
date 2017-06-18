@@ -7,7 +7,7 @@
 # Tap Me!
 Tap Me! is a game that was coded with **Swift 3+**. Do you want to learn to develop a game in Swift? If say yes, good news, this example game will be so useful for you...
  
-**Version: 1.1 🎉**
+**Version: 1.2 🎉**
 
 ##### You can develop yourself in these topics:
 1. Creating timer like encounter and downcounter with Swift 3.0+ // ` NSTimer(); `
@@ -24,6 +24,6 @@ Tap Me! is a game that was coded with **Swift 3+**. Do you want to learn to deve
 - There might be some errors, if you write me, I can fix them.
 
 ##### Screenshots:
-> ![Screenshots on Simulator iOS 10.3 / iPhone 7](https://github.com/batuhankok/swift-tap-me/blob/master/screenshots.jpg)
+> ![Screenshots on Simulator iOS 10.3 / iPhone 7](https://github.com/batuhankok/swift-tap-me/blob/master/screenshot.jpg)
 
 *Sorry for the code quality.*
