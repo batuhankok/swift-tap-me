@@ -22,7 +22,7 @@ class MainView: UIViewController {
     }()
     
     //User defaults
-    let ud = UserDefaults.standard
+    let kanun = UserDefaults.standard
     
     //Background imageview outlet
     @IBOutlet weak var bgImageView: UIImageView!
